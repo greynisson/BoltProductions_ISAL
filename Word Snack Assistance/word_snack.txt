@@ -1,0 +1,52 @@
+def sort_word(word):
+    char_array = []
+    for char in word:
+        char_array.append(char)
+    char_array.sort()
+    sorted_word = "".join(char_array)
+    return sorted_word
+
+def add_word(current_string, next_chars, file):
+    for next_char in next_chars:
+        file.write(current_string + next_char + "\n")
+
+def find_index(index_pool, serie, letters, file):
+        for index in index_pool:
+            if len(serie) < level:
+                new_serie = []
+                new_index_pool = []
+                for s in serie: new_serie.append(s)
+                for i in index_pool: new_index_pool.append(i)
+                new_serie.append(index)
+                new_index_pool.remove(index)
+                find_index(new_index_pool, new_serie, letters, file)
+            else:
+                word = ""
+                chars = ""
+                for s in serie: word += letters[s]
+                for i in index_pool: chars += letters[i]
+                add_word(word, chars, file)
+                break
+                
+#--------- Hér byrjar main-fallið -------------
+
+from timeit import default_timer as timer
+
+start = timer()
+
+input_string = "123456789"
+letters = sort_word(input_string)
+
+level = 0
+serie = []
+index_pool = list(range(0,len(letters)))
+
+f = open("word_snack_results.txt", "w")
+
+while level < len(input_string):
+    find_index(index_pool, serie, letters, f)
+    level += 1
+
+f.close()
+
+print(f"Runtime: {timer() - start}")

@@ -1,0 +1,10 @@
+Functions:
+
+	reverse(binary-string) ---> active_moulds
+
+		Tekur inn binary-string, snýr honum við, og skilar honum út. Hvert binary-gildi táknar notkun á steypumótum.
+
+
+	process_time(active_moulds, times) ---> current_time
+
+		Tekur inn binary-string og lista með framleiðslutímum hvers mótar. Skilar út framleiðslutíma m.v. notkun á steypumótum.
