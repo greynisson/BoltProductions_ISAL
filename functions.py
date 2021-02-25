@@ -41,6 +41,7 @@ def inverse_binary(binary):
         else: new_binary += "1"
     return new_binary
 
+"""
 def get_mould_sequence(moulds, seq):
     for mould in moulds:
         new_moulds = [m for m in moulds]
@@ -52,13 +53,13 @@ def get_mould_sequence(moulds, seq):
         else:
             print(new_seq)
             seq.clear()
-
+"""
 
 def make_alloy_indices():
     input_filename ='Data/alloys.txt'
     alloy_indices = {}
     with open(input_filename, newline='') as file:
-        line = file.readline().replace("\r","").replace("\n","")
+        line = file.readline().strip() #.replace("\r","").replace("\n","")
         while line:
             data = line.split(",")
             mould_size = data[0]
@@ -74,7 +75,7 @@ def make_alloy_indices():
                             indices += alloy_index
                 alloy_indices[mould_size] = indices
                 #print(f"Mould-size: {mould_size}, Sequence-string: {indices}")
-            line = file.readline().replace("\r","").replace("\n","")
+            line = file.readline().strip()# replace("\r","").replace("\n","")
 
     return alloy_indices
 
@@ -147,3 +148,15 @@ def verify_production_plan(production_sequence):
         return False     
             
     return is_valid
+
+
+def print_mould_schedule(machine_1, machine_2, time_difference, iteration):
+    print(f"**************** Iteration {iteration} ***************")
+    print(f"Machine 1: {machine_1.mould}")
+    print(f"Machine 2: {machine_2.mould}")
+    print(f"Time difference: {time_difference}")
+    print(f"Casting machine 1: {machine_1.processing_time} min")
+    print(f"Casting machine 2: {machine_2.processing_time} min")
+    #print(f"Times: {data.casting_time}")
+    print(f"********************************************")
+    print("")

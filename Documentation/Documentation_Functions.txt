@@ -1,10 +1,47 @@
 Functions:
 
-	reverse(binary-string) ---> active_moulds
+	reverse(number, N) --> new_binary
 
-		Tekur inn binary-string, snýr honum við, og skilar honum út. Hvert binary-gildi táknar notkun á steypumótum.
+		Tekur inn heiltölurnar number og N. Búum til binary-tölu úr number. Síðan snúum við binary-tölunni við. Næst bætum við '0' aftan á töluna ef þess þarf. Að lokum skilum við binary-tölunni.
 
 
-	process_time(active_moulds, times) ---> current_time
+	get_process_time(active_moulds, times) --> processing_time
 
-		Tekur inn binary-string og lista með framleiðslutímum hvers mótar. Skilar út framleiðslutíma m.v. notkun á steypumótum.
+		Reiknar út hversu langan tíma það tekur að afgreiða framleiðsluskipulagið fyrir steypumótin sem koma inn í fallið. Breytan times er bara listi þar sem times[i] er mínútufjöldinn sem fer í að steypa alla boltana af stærð size[i]. Úttakið í fallinu er summan af öllum steyputímanum og skiptitímunum sem fara í mótaskiptin.
+
+
+	inverse_binary(binary) --> new_binary
+	
+		Þetta fall tekur inn texta-string sem inniheldur binary-tölu. Það eina sem fallið gerir er að fara í gegnum texta-stringinn og umbreyta '0' í '1', og '1' í '0'. Við notum þetta fall til þess að koma í veg fyrir að steypuvél geti fengið úthlutað andhverfu framleiðsluskipulagi. Ef steypuvél 1 fær úthlutað framleiðsluskipulagi, þá fær steypuvél 2 sjálfkrafa úthlutað andhverfa framleiðsluskipulaginu. Þetta fall kemur semsagt í veg fyrir að við notum sama skipulag tvisvar.
+
+
+	get_mould_sequence(moulds, seq) 
+
+		Bæði inntökin eru listar sem eiga að innihalda mótastærðir. Í upphafi er seq bara tómur listi, og moulds inniheldur allar mótastærðirnar sem hafa verið úthlutað á steypuvélina. Tilgangurinn með þessu falli er að raða steypumótunum upp á 
+
+
+	make_alloy_indices() --> alloy_indices
+
+		Fallið les gögn upp úr skjali sem inniheldur upplýsingar sem tengja melmin saman við boltastærðirnar. Hvert melmi getur annað hvort verið einfalt eða flókið. Melmin eru skilgreind með indexum (int >= 0), þar sem hver flókin melmistegund fær sinn eigin index. Einföldu melmistegundirnar eru ekki sundurliðaðar neitt og fá allar sama indexinn, '0'. Við úthlutum index fyrir hvert eintak af flóknu melmi, en úthlutum bara einum index fyrir öll einföldu melmin, óháð því hvort þau séu 1, 5, 10 eða fleiri eintök. Einföldu melmin fá indexinn '0', og flóknu melminn fá index sem er stærri en 0. Þessir indexar eru skilgreindir sem textastrengir. Síðan notum við dictionary-object til þess að tengja mótastærðirnar saman við indexana. Úttakið verður þá dictionary þar sem lyklarnir eru mótastærðirnar, og samsvarandi gildi eru þá indexarnir.
+		Dæmi um index-string getur t.d. verið '01123334'. Hér værum við með eitt eða fleiri einföld melmi, 2 eintök af flóknu melmi af gerð 1, 1 eintak af gerð 2, 3 eintök af gerð 3 og svo loks 1 eintak af gerð 4. Þegar ekkert flókið melmi kemur við sögu þá verður index-stringurinn alltaf sjálfkrafa '0'.
+
+    
+	make_mould_sequence(alloy_indices, production_data)
+
+		Fallið tekur inn dictionary-objectið sem við fáum út úr make_alloy_indices(), ásamt tómu dictionary-objecti sem er skilgreint sem production_data. Tilgangurinn með þessu falli er að raða mótastærðunum upp í allar mögulegar uppraðanir. Þetta fall skilar ekki neinu, það heldur bara áfram að finna nýjar uppraðanir fyrir mótastærðirnar, og hættir síðan þegar þær eru allar fundnar. Mótastærðirnar eru geymdar í samskonar dictionary og við fáum út úr make_alloy_indices(). Í hvert skipti sem mótunum hefur verið raðað upp í nýja röð, þá köllum við í annað fall sem heitir make_alloy_sequence() og notum það til þess að vinna úr dictionary-inu.
+
+
+	make_alloy_sequence(alloys, moulds, data, sequence, production_plan, production_sequence)
+
+		Fallið tekur inn upplýsingar sem eru matreiddar úr dictionary-inu sem make_mould_sequence() býr til fyrir okkur. Við vinnum alltaf með eina mótastærð í einu, eða þar til við höfum skilgreint framleiðsluröð á melmunum fyrir steypumótið. Við endurtökum processinn fyrir næstu mótastærð, eða alveg þangað til við höfum klárað að úthluta melmum á allar mótastærðirnar. Á þessu stigi höfum við sett saman fyrstu framleiðsluröðina fyrir þessa tilteknu mótasamsetningu. Næsta skref er síðan að kalla í fallið verify_production_plan(), til að skera úr um hvort framleiðsluröðin gangi upp m.v. forsendur sem við gefum okkur úr raunveruleikanum. Ef framleiðsluröðin uppfyllir öll skilyrði, þá skrifum við framleiðsluröðina inn í skrá og geymum hana þar. Síðan höldum við áfram og endurtökum ferilinn þar til við höfum fundið allar framleiðsluraðirnar fyrir þessa tilteknu mótasamsetningu sem við fengum frá make_mould_sequence().
+
+
+	verify_production_plan(production_sequence) --> is_valid
+
+		Inntakið lýsir framleiðsluröð fyrir öll melmin sem á að framleiða. Framleiðsluröðin er bara runa af indexum sem lýsa ýmist einföldu eða flóknu melmi. Í fallinu sjálfu er dictionary sem segir til um hvaða melmi má framleiða beint á eftir hvoru öðru. Hver lykill samanstendur af einum index fyrir eitthvert melmi, og samsvarandi gildi inniheldur þá indexa fyrir öll melmin sem má framleiða beint á eftir melminu sem um ræðir.
+
+
+	print_mould_schedule(machine_1, machine_2, time_difference, iteration)
+
+		Fallið prentar út niðurstöðurnar á mótasamsetningunum fyrir hverja ítrun í sort_machine.py ásamt tímamismun og fleira. Það reiknar semsagt ekki neitt, heldur eingöngu notað til að skila upplýsingum til notandans.
+		

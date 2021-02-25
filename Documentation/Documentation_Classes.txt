@@ -1,0 +1,52 @@
+Class name: Machine
+
+
+Attributes:
+
+	processing_time (Int):
+		Segir hversu margar mínútur það tekur steypuvélina að klára framleiðsluna sína
+    
+    mould_types (Int):
+    	Segir hversu margar mótastærðir notast við vélina
+    
+    binary (String):
+    	Hefur lengdina n, þar sem n er fjöldi mótastærða. Hver char getur annaðhvort verið '0' / '1'. Td '11001', mótastærðir 1,2 og 5 eru notaðar, en ekki 3 og 4.
+
+    quantity (List):
+    	quantity[i] segir til um hversu margir boltar af stærðinni size[i] eru í framleiðsluáætluninni.
+
+    casting_time (List):
+    	casting_time[i] segir til um hversu langan tíma tekur að steypa alla boltana af stærðinni size[i] í framleiðsluáætluninni.
+
+    mould (List):
+    	mould[i] heldur utan um stærðina á steypumótinu sem er tengd við index-inn i. T.d. i = 0 --> mould[0] = '173'
+
+    isTotal (Boolean):
+    	Greinir á milli þess hvort instance-inn geymi alla framleiðsluáætlunina eða ekki. Ef ekki, þá geymir instance-inn framleiðsluáætlun fyrir eina steypuvél.
+
+    index (Int):
+    	Þessi breyta er notuð til þess að ítra yfir attributes inni í klasanum.
+
+
+Methods:
+
+	__iter__(self):	
+		Gerir okkur kleift að ítra í gegnum attributes í klasanum.
+
+
+	__next__(self):
+		Vinnur með __iter__(self)
+
+
+    __init__(self, isTotal):
+    	Constructor fyrir klasann. Hann tekur inn eina boolean-breytu sem sker úr um hvort instance-inn geymi alla framleiðsluáætlunina eða ekki. Ef ekki þá geymir instance-inn framleiðsluáætlun fyrir eina steypuvél.
+
+
+    total_time(self):
+    	Reiknar framleiðslutímann fyrir framleiðsluáætlunina sem er tengd við instance-inn. S.s steyputími + skiptitími vegna mótaskipta
+
+   
+    make_schedule(self, data):
+    	Úthlutar steypumótum á steypuvél, þar sem self.mould[i] er þá mótastærð size[i]. Við notum binary-stringinn til þess að velja hvaða gögn við veiðum út úr gagnasettinu.
+
+    	

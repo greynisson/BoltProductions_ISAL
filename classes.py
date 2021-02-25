@@ -34,16 +34,6 @@ class Bolts:
             exchange_time = 30 * (self.mould_types - 1)
         self.processing_time = exchange_time + casting_time
 
-    def assign_id(self, binary):
-        index = 0
-        key = 0
-        id = {}
-        for b in binary:
-            if b == "1": 
-                id[index] = key
-                index += 1
-            key += 1
-        self.id = id
     
     def make_schedule(self, data):
         casting_time = []

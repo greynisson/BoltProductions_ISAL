@@ -24,7 +24,6 @@ with open('Data/bolts.csv', newline='') as csvfile:
         
 data.total_time()
 
-
 while len(tested_binary) < max_iterations:
     best_binary = ""
     time_difference = data.processing_time
@@ -43,17 +42,9 @@ while len(tested_binary) < max_iterations:
                 best_binary = machine_1.binary
 
     tested_binary.append(best_binary)
-    print(f"**************** Iteration {len(tested_binary)} ***************")
-    print(f"Machine 1: {machine_1.mould}")
-    print(f"Machine 2: {machine_2.mould}")
-    print(f"Time difference: {time_difference}")
-    print(f"Casting machine 1: {machine_1.processing_time} min")
-    print(f"Casting machine 2: {machine_2.processing_time} min")
-    print(f"Times: {data.casting_time}")
-    print(f"********************************************")
-    print("")
     
-
+    print_mould_schedule(machine_1, machine_2, time_difference, len(tested_binary))
+    
 stop = timer()
 result = stop - start
 print(f"Time 1: {result}")
