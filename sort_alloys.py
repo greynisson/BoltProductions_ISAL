@@ -88,7 +88,6 @@ for mould in mould_array2:
 
 make_mould_sequence(alloy_indices_m1, {})
 
-
 """
 moulds = ['305', '203']
 first_mould = moulds[0]

@@ -1,13 +1,13 @@
 from timeit import default_timer as timer
 from classes import Bolts
-from functions import * 
+from functions import * #reverse, get_process_time, assign_machine_1, assign_machine_2, inverse_binary
 import csv
 
 start = timer()
 data = Bolts(True)
 machine_1 = Bolts(False)
 machine_2 = Bolts(False)
-max_iterations = 3
+max_iterations = 1
 tested_binary = []
 
 with open('Data/bolts.csv', newline='') as csvfile:
@@ -23,6 +23,7 @@ with open('Data/bolts.csv', newline='') as csvfile:
              data.mould.append(size)
         
 data.total_time()
+
 
 while len(tested_binary) < max_iterations:
     best_binary = ""
