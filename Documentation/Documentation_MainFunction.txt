@@ -1,0 +1,32 @@
+Variables:
+
+	data (Machine):
+
+		Breyta af gerðinni Machine, sem heldur utan um öll gögnin sem voru lesin upp úr skránni. Constructor-inn fyrir þessa breytu tekur inn is_total = True, vegna þess að allt gagnasettið er geymt í þessari breytu
+
+	machine_1 (Machine):
+
+		Breyta af gerðinni Machine, sem heldur utan um framleiðsluáætlunina fyrir steypuvél 1. Constructor-inn fyrir þessa breytu tekur inn is_total = False, vegna þess að breyta geymir aðeins hluta gagnasettsins (restin af gögnunum lendir í breytunni fyrir hina steypuvélina).
+
+	machine_2 (Machine):
+
+		Breyta af gerðinni Machine, sem inniheldur allt sem breytan data inniheldur, en machine_1 inniheldur ekki.
+
+
+	max_iterations (Int):
+
+		Heiltölubreyta sem stjórnar því hversu mörgum mótasamsetningum við úthlutum á hverja steypuvél. Ef max_iterations = 1, þá notum við eingögnu mótasamsetninguna sem gefur minnstan mun á framleiðslutíma steypuvélanna. Og að sama skapi, ef max_iterations = 3, þá fáum við 3 mótasamsetningar, þar sem fyrsta ítrun gefur hagstæðustu mótasamsetninguna, síðan næsthagstæðustu mótasamsetninguna, og að lokum þriðju hagstæðustu mótasamsetninguna.
+
+
+	max_moulds (Int):
+
+		Heiltölubreyta sem ákvarðast út frá því hversu margar stærðir af steypumótum verða notuð í framleiðsluáætluninni. Þessi breyta er upphafsstillt sem max_moulds = 0, og hækkar síðan sjálfkrafa upp í fjölda mótastærða þegar gögnin eru lesin upp úr skránni.
+
+
+	tested_binary (List):
+
+		Listi sem geymir texta-strengi með binary-tölu, þar sem hvert sæti í tölunni táknar mótastærð. Sæti eitt táknar minnstu mótastærðina, sæti tvö táknar næstminnstu mótastærðina, fjórða sætið táknar fjórðu minnstu mótastærðina, og síðasta sætið táknar stærstu mótastærðina. Binary-talan '1100001' táknar t.d. að notast eigi við steypumóti 1, 2 og 7 (minnsta, næstminnsta og stærsta). Tilgangurinn með listanum er að halda utan um framleiðsluáætlanir sem hafa verið valdar, svo forritið tvítelji ekki hverja framleiðsluáætlun. T.d. þá er '1100001' nákvæmlega sama áætlun og '0011110', því vélarnar eru alveg eins og það skiptir ekki máli hvort framleiðsluáætlunin lendi á vél 1 eða 2. Þ.a.l. er tilgangslaust að taka með áætlanir sem eru andhverfar við þær sem hafa verið valdar nú þegar. En listinn sjálfur er upphafsstilltur sem tómur listi, og hann bætir við sig stökum sjálfkrafa.
+
+
+	
+

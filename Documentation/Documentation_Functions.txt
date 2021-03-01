@@ -20,7 +20,7 @@ Functions:
 		Bæði inntökin eru listar sem eiga að innihalda mótastærðir. Í upphafi er seq bara tómur listi, og moulds inniheldur allar mótastærðirnar sem hafa verið úthlutað á steypuvélina. Tilgangurinn með þessu falli er að raða steypumótunum upp á 
 
 
-	make_alloy_indices() --> alloy_indices
+	make_alloy_indices() --> alloy_indices  ### ÞETTA FALL HEFUR VERIP FÆRT INN Í CONSTRUCTORINN FYRIR MACHINE-KLASANN ###
 
 		Fallið les gögn upp úr skjali sem inniheldur upplýsingar sem tengja melmin saman við boltastærðirnar. Hvert melmi getur annað hvort verið einfalt eða flókið. Melmin eru skilgreind með indexum (int >= 0), þar sem hver flókin melmistegund fær sinn eigin index. Einföldu melmistegundirnar eru ekki sundurliðaðar neitt og fá allar sama indexinn, '0'. Við úthlutum index fyrir hvert eintak af flóknu melmi, en úthlutum bara einum index fyrir öll einföldu melmin, óháð því hvort þau séu 1, 5, 10 eða fleiri eintök. Einföldu melmin fá indexinn '0', og flóknu melminn fá index sem er stærri en 0. Þessir indexar eru skilgreindir sem textastrengir. Síðan notum við dictionary-object til þess að tengja mótastærðirnar saman við indexana. Úttakið verður þá dictionary þar sem lyklarnir eru mótastærðirnar, og samsvarandi gildi eru þá indexarnir.
 		Dæmi um index-string getur t.d. verið '01123334'. Hér værum við með eitt eða fleiri einföld melmi, 2 eintök af flóknu melmi af gerð 1, 1 eintak af gerð 2, 3 eintök af gerð 3 og svo loks 1 eintak af gerð 4. Þegar ekkert flókið melmi kemur við sögu þá verður index-stringurinn alltaf sjálfkrafa '0'.
@@ -41,7 +41,7 @@ Functions:
 		Inntakið lýsir framleiðsluröð fyrir öll melmin sem á að framleiða. Framleiðsluröðin er bara runa af indexum sem lýsa ýmist einföldu eða flóknu melmi. Í fallinu sjálfu er dictionary sem segir til um hvaða melmi má framleiða beint á eftir hvoru öðru. Hver lykill samanstendur af einum index fyrir eitthvert melmi, og samsvarandi gildi inniheldur þá indexa fyrir öll melmin sem má framleiða beint á eftir melminu sem um ræðir.
 
 
-	print_mould_schedule(machine_1, machine_2, time_difference, iteration)
+	print_mould_schedule(machine_1, machine_2, best_time_difference, iteration)
 
 		Fallið prentar út niðurstöðurnar á mótasamsetningunum fyrir hverja ítrun í sort_machine.py ásamt tímamismun og fleira. Það reiknar semsagt ekki neitt, heldur eingöngu notað til að skila upplýsingum til notandans.
 		

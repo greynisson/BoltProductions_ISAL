@@ -4,19 +4,19 @@ from functions import *
 
 
 data = {'203': ['0'], '215': ['0', '5'], '305': ['0', '1', '1']}
-mould_array = ['203', '215', '305']
+mould_array1 = ['203', '215', '305']
 data2 = {'178': ['0'], '228': ['0', '4'], '254': ['0', '2', '2', '2', '3', '4'],  '279': ['0']}
 mould_array2 = ['178', '228', '254', '279']
 
 alloy_indices = make_alloy_indices()
 alloy_indices_m1 = {}
 
-for mould in mould_array2:
+for mould in mould_array1:
     alloy_indices_m1[mould] = alloy_indices[mould]
 
-print(alloy_indices)
+print(alloy_indices_m1)
 
-make_mould_sequence(alloy_indices_m1, {})
+#make_mould_sequence(alloy_indices_m1, {})
 
 """
 moulds = ['305', '203']

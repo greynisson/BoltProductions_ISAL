@@ -1,4 +1,4 @@
-def reverse(number, N):
+def get_binary_sequence(number, N):
     binary = bin(number)[2:]
     new_binary = binary[::-1]
     counter = len(binary)
@@ -17,22 +17,6 @@ def get_process_time(active_moulds, times):
         mould_exchange += int(mould)
     return casting_time + 30 * mould_exchange
 
-"""
-def assign_machine_1(binary_moulds, bolts):
-    counter = 0
-    moulds = []
-    for mould in binary_moulds:
-        if mould == "1": 
-            moulds.append(bolts[counter])
-        counter += 1
-    return moulds
-
-def assign_machine_2(active_moulds, mould_sizes):
-    machine_2 = []
-    for size in mould_sizes:
-        if size not in active_moulds: machine_2.append(size)
-    return machine_2
-"""
 
 def inverse_binary(binary):
     new_binary = ""
@@ -41,25 +25,12 @@ def inverse_binary(binary):
         else: new_binary += "1"
     return new_binary
 
-"""
-def get_mould_sequence(moulds, seq):
-    for mould in moulds:
-        new_moulds = [m for m in moulds]
-        new_seq = [s for s in seq]
-        new_moulds.remove(mould)
-        new_seq.append(mould)
-        if len(new_moulds) > 0:
-            get_mould_sequence(new_moulds, new_seq)
-        else:
-            print(new_seq)
-            seq.clear()
-"""
 
 def make_alloy_indices():
     input_filename ='Data/alloys.txt'
     alloy_indices = {}
     with open(input_filename, newline='') as file:
-        line = file.readline().strip() #.replace("\r","").replace("\n","")
+        line = file.readline().strip()
         while line:
             data = line.split(",")
             mould_size = data[0]
@@ -74,8 +45,7 @@ def make_alloy_indices():
                         for i in range(0, alloy_quantity):
                             indices += alloy_index
                 alloy_indices[mould_size] = indices
-                #print(f"Mould-size: {mould_size}, Sequence-string: {indices}")
-            line = file.readline().strip()# replace("\r","").replace("\n","")
+            line = file.readline().strip()
 
     return alloy_indices
 
@@ -92,6 +62,7 @@ def make_mould_sequence(alloy_indices, production_data):
             moulds = list(current_production_data.keys())
             first_mould = moulds[0]
             first_alloys = current_production_data[first_mould]
+            
             make_alloy_sequence(first_alloys, moulds, current_production_data, [], {}, "")
 
 
@@ -150,11 +121,11 @@ def verify_production_plan(production_sequence):
     return is_valid
 
 
-def print_mould_schedule(machine_1, machine_2, time_difference, iteration):
+def print_mould_schedule(machine_1, machine_2, best_time_difference, iteration):
     print(f"**************** Iteration {iteration} ***************")
     print(f"Machine 1: {machine_1.mould}")
     print(f"Machine 2: {machine_2.mould}")
-    print(f"Time difference: {time_difference}")
+    print(f"Time difference: {best_time_difference}")
     print(f"Casting machine 1: {machine_1.processing_time} min")
     print(f"Casting machine 2: {machine_2.processing_time} min")
     #print(f"Times: {data.casting_time}")
