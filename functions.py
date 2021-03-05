@@ -97,8 +97,25 @@ def make_alloy_sequence(alloys, moulds, data, sequence, production_plan, product
                         for alloy in list(production_plan[mould]):
                             alloy_array.append(alloy)
                         production_string += ",".join(alloy_array) + " "
-                        
+
+                    #print(production_plan)   
                     print(production_string)
+
+def max_binary(mould_count): 
+    binary_string = ""
+    for i in range(0, mould_count):
+        binary_string += '1'
+    return binary_string
+
+def max_process_time(data):
+    mould_exchange = -2
+    casting_time = 0
+    exchange_time = 30
+    for time in data.casting_time:
+        casting_time += time
+        mould_exchange += 1
+    return casting_time + exchange_time * mould_exchange
+
 
 def verify_production_plan(production_sequence):
     is_valid = True
@@ -128,6 +145,5 @@ def print_mould_schedule(machine_1, machine_2, best_time_difference, iteration):
     print(f"Time difference: {best_time_difference}")
     print(f"Casting machine 1: {machine_1.processing_time} min")
     print(f"Casting machine 2: {machine_2.processing_time} min")
-    #print(f"Times: {data.casting_time}")
     print(f"********************************************")
     print("")

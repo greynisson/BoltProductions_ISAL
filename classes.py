@@ -48,25 +48,18 @@ class Machine:
             self.schedule = alloy_indices
 
 
-    def get_process_time(self, mould_binary):
+    def get_process_time(self):
         mould_exchange = -1
         casting_time = 0
-        for j in range(0,len(mould_binary)):
-            if mould_binary[j] == "1": casting_time += self.casting_time[j]
-        for mould in mould_binary:
+        exchange_time = 30
+        binary = self.binary
+        for j in range(0,len(binary)):
+            if binary[j] == "1":
+                casting_time += self.casting_time[j]
+        for mould in binary:
             mould_exchange += int(mould)
-        return casting_time + 30 * mould_exchange
+        self.processing_time = casting_time + exchange_time * mould_exchange
 
-    
-    def total_time(self):
-        self.mould_types = len(self.casting_time)
-        exchange_time = 0
-        casting_time = sum(self.casting_time)
-        if self.is_total:
-            exchange_time = 30 * (self.mould_types - 2)
-        else: 
-            exchange_time = 30 * (self.mould_types - 1)
-        self.processing_time = exchange_time + casting_time
 
     
     def make_schedule(self, data):
@@ -77,7 +70,6 @@ class Machine:
         i = 0
         for b in self.binary:
             if b == "1":
-                casting_time.append(data.casting_time[i])
                 mould.append(data.mould[i])
                 quantity.append(data.quantity[i])
                 schedule[data.mould[i]] = data.schedule[data.mould[i]]
